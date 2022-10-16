@@ -14,5 +14,20 @@ In more details: <br>
 	or ecx, 0FFFFFFFFh = -1<br>
 	add ecx, 2 = actual len of the string
 	without counting null-term and numerating from 0<br>
-That's all. IMO it the main trick in this ex.<br>
+That's all. IMO it's the main trick in this ex.<br>
 	
+Page 17 <br>
+Q:Come up with at least two code sequences to set EIP to 0xAABBCCDD.
+A: mov ax, 0    call ax || push 0  ret
+
+Q:In the example function, addme , what would happen if the stack pointer
+were not properly restored before executing RET ?
+A:In short, we would not control over execute flow. Put another word,
+ when ret instruction pops invalid ret address, it jumps to that invalid address and
+ continue execute commands from the wrong space. Hance, this will result in an incorrect behavior.
+Q:In all of the calling conventions explained, the return value is stored in a
+32-bit register ( EAX ). What happens when the return value does not fi t in a
+32-bit register? Write a program to experiment and evaluate your answer.
+Does the mechanism change from compiler to compiler?
+A: In case of msvc nothing checked. Bytes interprets just as it. <br>
+No ant additional check or smth like this. <br>
